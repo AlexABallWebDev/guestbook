@@ -3,12 +3,29 @@
 </head>
 
 <body>
-  <h1>Welcome to my guestbook</h1>
-	<form>
-		<label for="guestname">Name</label>
-		<input type="text" name="guestname" />
-		
-		<label for="guestBookMessage">Message</label>
-		<textarea type="text" name="guestBookMessage" cols="30" rows="3"></textarea>
-	</form>
+  <h1>Welcome to Alex Ball's guestbook</h1>
+	
+	{{> guestBook}}
+	
 </body>
+
+<template name="guestBook">
+	<form>
+		<!-- Guest Name Input -->
+		<div>
+			<label for="guestName">Name</label>
+			<input type="text" name="guestName" />
+		</div>
+		
+		<!-- Message Input -->
+		<div>
+			<label for="guestBookMessage">Message</label>
+			<textarea name="guestBookMessage" cols="30" rows="3"></textarea>
+		</div>
+		
+		<!-- Submit Button -->
+		<button type="submit">Post Message</button>
+	</form>
+	
+	
+</template>
