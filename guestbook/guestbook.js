@@ -1,6 +1,18 @@
 Messages = new Mongo.Collection('messages');
 
 if (Meteor.isClient) {
+	//subscribe to get the Messages collection.
+	Meteor.subscribe("messages");
+	
+	
+	Template.guestBook.helpers({
+		"messages": function() {
+			//return all message objects, or an empty object if DB
+			//is invalid. sort with most recent entries first.
+			return Messages.find({}, {sort: {createdOn: -1}}) || {};
+		}
+	});
+	
 	//event listeners for the guestBook template
   Template.guestBook.events({
 		//when the form is submitted, execute this block of code.
@@ -29,10 +41,14 @@ if (Meteor.isClient) {
 			//insert an entry into the messages collection
 			Messages.insert({
 				"name": nameText,
-				"message": messageText
+				"message": messageText,
+				"createdOn": Date.now()
 			});
 			
-			alert("name: " + nameText + " message: " + messageText);
+			//clear the inputs after an entry is added.
+			nameBox.val("");
+			messageBox.val("");
+			
 		}
 	});
 }
@@ -41,4 +57,9 @@ if (Meteor.isServer) {
   Meteor.startup(function () {
     // code to run on server at startup
   });
+	
+	//publish the messages collection.
+	Meteor.publish("messages", function () {
+		return Messages.find();
+	});
 }

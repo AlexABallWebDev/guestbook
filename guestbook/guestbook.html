@@ -3,29 +3,39 @@
 </head>
 
 <body>
-  <h1>Welcome to Alex Ball's guestbook</h1>
 	
 	{{> guestBook}}
 	
 </body>
 
 <template name="guestBook">
-	<form>
-		<!-- Guest Name Input -->
-		<div>
-			<label for="guestName">Name</label>
-			<input type="text" name="guestName" />
-		</div>
+	<div class="container">
+		<h1>Welcome to Alex Ball's Guestbook</h1>
 		
-		<!-- Message Input -->
-		<div>
-			<label for="guestBookMessage">Message</label>
-			<textarea name="guestBookMessage" cols="30" rows="3"></textarea>
-		</div>
+		<form>
+			<!-- Guest Name Input -->
+			<div class="form-group">
+				<label for="guestName">Name</label>
+				<input type="text" class="form-control" name="guestName" />
+			</div>
+			
+			<!-- Message Input -->
+			<div class="form-group">
+				<label for="guestBookMessage">Message</label>
+				<textarea name="guestBookMessage" class="form-control"
+									cols="30" rows="3"></textarea>
+			</div>
+			
+			<!-- Submit Button -->
+			<button type="submit" class="btn btn-primary">Post Message</button>
+		</form>
 		
-		<!-- Submit Button -->
-		<button type="submit">Post Message</button>
-	</form>
-	
-	
+		<!--
+			Print each message's name (the guest's name)
+			and message (the guest's message).
+		-->
+		{{#each messages}}
+			<p>{{name}}: {{message}} - <span class="date-submitted">{{createdOn}}</span></p>
+		{{/each}}
+	</div>
 </template>
