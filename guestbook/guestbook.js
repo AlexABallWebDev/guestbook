@@ -38,17 +38,26 @@ if (Meteor.isClient) {
 			//save the text from the name object into a variable.
 			var nameText = nameBox.val();
 			
-			//insert an entry into the messages collection
-			Messages.insert({
-				"name": nameText,
-				"message": messageText,
-				"createdOn": Date.now()
-			});
+			//if name and message have data,
+			//enter it into the messages collection.
+			if (nameText.length > 0 &&
+					messageText.length > 0) {
 			
-			//clear the inputs after an entry is added.
-			nameBox.val("");
-			messageBox.val("");
+				//insert an entry into the messages collection
+				Messages.insert({
+					"name": nameText,
+					"message": messageText,
+					"createdOn": Date.now()
+				});
 			
+				//clear the inputs after an entry is added.
+				nameBox.val("");
+				messageBox.val("");
+			}
+			//display an error when one of the boxes is empty.
+			else {
+				alert("The name and message cannot be empty!");
+			}
 		}
 	});
 }
