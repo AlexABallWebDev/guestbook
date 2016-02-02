@@ -35,7 +35,7 @@
 				and message (the guest's message).
 			-->
 			{{#each messages}}
-				<p>{{name}}: {{message}} - <span class="date-submitted">{{createdOn}}</span></p>
+				<p><a href="{{pathFor route='message.show'}}">{{name}}: {{message}} - <span class="date-submitted">{{createdOn}}</span></a></p>
 			{{/each}}
 		</div>
 	</div>

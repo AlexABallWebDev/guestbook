@@ -17,7 +17,11 @@ Router.route('/messages/:_id', function() {
 		}
 	});
 	this.layout('layout');
-});
+},
+{
+	name: 'message.show'
+}
+);
 
 if (Meteor.isClient) {
 	//subscribe to get the Messages collection.
