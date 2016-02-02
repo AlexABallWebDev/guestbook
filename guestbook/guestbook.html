@@ -1,45 +1,58 @@
-<head>
-  <title>Guestbook</title>
-</head>
 
-<body>
-	
-	{{> guestBook}}
-	
-</body>
+<template name="layout">
+	<body>
+		<div class="container">
+			<h1>Welcome to Alex Ball's Guestbook</h1>
+			
+			{{> yield}}
+		</div>
+	</body>
+</template>
 
 <template name="guestBook">
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-6">
-				<h1>Welcome to Alex Ball's Guestbook</h1>
+	<div class="row">
+		<div class="col-xs-6">
+			<form>
+				<!-- Guest Name Input -->
+				<div class="form-group">
+					<label for="guestName">Name</label>
+					<input type="text" class="form-control" name="guestName" />
+				</div>
 				
-				<form>
-					<!-- Guest Name Input -->
-					<div class="form-group">
-						<label for="guestName">Name</label>
-						<input type="text" class="form-control" name="guestName" />
-					</div>
-					
-					<!-- Message Input -->
-					<div class="form-group">
-						<label for="guestBookMessage">Message</label>
-						<textarea name="guestBookMessage" class="form-control"
-											cols="30" rows="3"></textarea>
-					</div>
-					
-					<!-- Submit Button -->
-					<button type="submit" class="btn btn-primary">Post Message</button>
-				</form>
+				<!-- Message Input -->
+				<div class="form-group">
+					<label for="guestBookMessage">Message</label>
+					<textarea name="guestBookMessage" class="form-control"
+										cols="30" rows="3"></textarea>
+				</div>
 				
-				<!--
-					Print each message's name (the guest's name)
-					and message (the guest's message).
-				-->
-				{{#each messages}}
-					<p>{{name}}: {{message}} - <span class="date-submitted">{{createdOn}}</span></p>
-				{{/each}}
-			</div>
+				<!-- Submit Button -->
+				<button type="submit" class="btn btn-primary">Post Message</button>
+			</form>
+			
+			<!--
+				Print each message's name (the guest's name)
+				and message (the guest's message).
+			-->
+			{{#each messages}}
+				<p>{{name}}: {{message}} - <span class="date-submitted">{{createdOn}}</span></p>
+			{{/each}}
+		</div>
+	</div>
+</template>
+
+<template name="about">
+	<div class="row">
+		<div class="col-xs-6">
+			<p>This is an app created for IT328 in Meteor.</p>
+		</div>
+	</div>
+</template>
+
+<template name="message">
+	<div class="row">
+		<div class="col-xs-6">
+			<p>{{name}}: {{message}} - <span class="date-submitted">{{createdOn}}</span></p>
 		</div>
 	</div>
 </template>
